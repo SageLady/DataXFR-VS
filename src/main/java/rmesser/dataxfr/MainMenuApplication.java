@@ -12,7 +12,7 @@ public class MainMenuApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MainMenuApplication.class.getResource("main-menu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 800, 500);
-        stage.setTitle("Data Transfer TEST");
+        stage.setTitle("Data Transfer Application");
         stage.setScene(scene);
         stage.show();
 
