@@ -9,6 +9,6 @@ public class MainMenuController {
 
     @FXML
     protected void onHelloButtonClick() {
-        welcomeText.setText("Welcome to JavaFX Application!");
+        welcomeText.setText("Welcome TEST!");
     }
 }
