@@ -25,7 +25,7 @@ public class MainMenuController {
         Dialog<ButtonType> dialog = new Dialog();
         dialog.initOwner(this.mainBorderPane.getScene().getWindow());
         dialog.setTitle("Add New Spreadsheet");
-        dialog.setHeaderText("Use this dialog to add spreadsheet details");
+        dialog.setHeaderText("Steps: 1. Set Path 2. Load ");
         FXMLLoader fxmlLoader = new FXMLLoader();
         fxmlLoader.setLocation(this.getClass().getResource("new-spreadsheet-dialog.fxml"));
 

@@ -1,0 +1,25 @@
+.button {
+    -fx-background-color: blue;
+    -fx-border-color: black;
+    -fx-text-fill: white;
+/*
+    -fx-graphic: url(@csswithfx/javafxapplication/csswithfx/CSS/CSS-Images/AlignRight24.gif);
+*/
+}
+
+#HBOX_Border {
+    -fx-border-color: black;
+    -fx-border-insets: 1;
+    -fx-border-width: 1;
+    -fx-border-style: solid;
+}
+
+#Button_Two {
+    -fx-background-color: blue;
+    -fx-text-fill: white;
+}
+
+#openButton {
+    -fx-background-color: yellow;
+    -fx-text-fill: black;
+}

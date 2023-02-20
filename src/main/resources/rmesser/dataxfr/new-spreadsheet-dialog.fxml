@@ -1,20 +1,91 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
-
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="rmesser.dataxfr.NewSpreadsheetDialogController"
-            prefHeight="400.0" prefWidth="700.0">
-<headerText>
-    This header text will be below the header set in the controller file.
-</headerText>
+            stylesheets="@CSS/styles.css"
+            prefHeight="600.0" prefWidth="600.0">
+<!--<headerText>
+ "Set Path" button: select "Open" once file located. "Load" button: select once directory and name fields populated.
+</headerText>-->
 <content>
-    <GridPane hgap="10" vgap="10">
+    <GridPane fx:id="gridPane" hgap="10" vgap="10">
+        <HBox  id="HBOX_Border"  GridPane.rowIndex="0" GridPane.columnIndex="0">
+            <padding>
+                <Insets left="5" />
+            </padding>
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="1. " >
+                <HBox.margin>
+                    <Insets top="10.0" />
+                </HBox.margin>
+            </Label>
+            <Button text="Set Path" minWidth="25"  GridPane.rowIndex="0" GridPane.columnIndex="0"
+                    fx:id="directoryButton"  onAction="#directoryButtonHandleClick" >
+                <graphic>
+                    <ImageView>
+                        <Image url="@Images/Open24.gif"/>
+                    </ImageView>
+                </graphic>
+                <HBox.margin>
+                    <Insets right ="5.0" />
+                </HBox.margin>
+            </Button>
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;"
+                   text="Traverse to directory where file located and select Open button                     " >
+            <HBox.margin>
+                <Insets top="10.0" />
+            </HBox.margin>
+            </Label>
+        </HBox>
+        <HBox GridPane.rowIndex="1" GridPane.columnIndex="0">
+            <padding>
+                <Insets left="5" top="5" />
+            </padding>
+            <Label text="Path: "   />
+            <TextField  fx:id="path" minWidth="500" />
+        </HBox>
+        <HBox GridPane.rowIndex="2" GridPane.columnIndex="0">
+            <padding>
+                <Insets left="5" top="5" />
+            </padding>
+            <Label text="Filename:  "  />
+            <TextField  fx:id="filename" minWidth="450" />
+        </HBox>
+        <HBox  id="HBOX_Border" fx:id="HBOX_Load"
+               GridPane.rowIndex="3" GridPane.columnIndex="0">
+            <padding>
+                <Insets left="5" />
+            </padding>
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" text="2. " >
+                <HBox.margin>
+                    <Insets top="10.0" />
+                </HBox.margin>
+            </Label>
+            <Button text="Load" minWidth="25"  GridPane.rowIndex="0" GridPane.columnIndex="0"
+                    fx:id="loadButton"  onAction="#loadButtonHandleClick" >
+                <graphic>
+                    <ImageView>
+                        <Image url="@Images/Open24.gif"/>
+                    </ImageView>
+                </graphic>
+                <HBox.margin>
+                    <Insets right ="5.0" />
+                </HBox.margin>
+            </Button>
+            <Label style="-fx-font-weight: bold; -fx-text-fill: black;" fx:id="loadInstructions"
+                   text="Select Load button to finish record details                     " >
+                <HBox.margin>
+                    <Insets top="10.0" />
+                </HBox.margin>
+            </Label>
+        </HBox>
+
+<!--
         <Label text="Short description:" GridPane.rowIndex="0" GridPane.columnIndex="0"   />
         <TextField  fx:id="shortDescriptionField" GridPane.rowIndex="0"   GridPane.columnIndex="1"/>
         <Label text="Details:" GridPane.rowIndex="1" GridPane.columnIndex="0"  />
@@ -22,6 +93,7 @@
                   wrapText="true"/>
         <Label text="Deadline:" GridPane.rowIndex="2" GridPane.columnIndex="0"  />
         <DatePicker  fx:id="deadlinePicker"   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+-->
 
     </GridPane>
 </content>

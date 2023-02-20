@@ -1,0 +1,17 @@
+
+    <Button text="Button Three" GridPane.rowIndex="0" GridPane.columnIndex="2"
+            id ="openButton"  fx:id="buttonThree"  onAction="#handleClick" >
+        <graphic>
+            <ImageView>
+                <Image url="@images/Open24.gif"/>
+            </ImageView>
+        </graphic>
+    </Button>
+    <Button fx:id="buttonFour"  text="Button Four" GridPane.rowIndex="0" GridPane.columnIndex="3"
+            id ="openButton"  onAction="#handleDirectoryClick" >
+        <graphic>
+            <ImageView>
+                <Image url="@images/Open24.gif"/>
+            </ImageView>
+        </graphic>
+    </Button>

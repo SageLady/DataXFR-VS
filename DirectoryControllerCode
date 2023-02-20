@@ -1,0 +1,44 @@
+@FXML
+    public void handleClick(){
+        FileChooser chooser = new FileChooser();
+        chooser.setTitle("SaveApplicationFile");
+        //defining extensions serves to show users the available file types
+        //that can be used for a given utility or how a file should be saved.
+        //Also, the method ExtensionFilter will only display the files
+        //with either the PDF or txt extension.
+        chooser.getExtensionFilters().addAll(
+                //If you want to limit what is display on Windows/ Mac
+                //use extension filter
+                new FileChooser.ExtensionFilter("PDF","*.pdf"),
+                new FileChooser.ExtensionFilter("Text", "*.txt"),
+                new FileChooser.ExtensionFilter("Zip","*.zip"),
+                new FileChooser.ExtensionFilter("Image Files", "*.jpg","*.png","*.gif","*.gmp"),
+                //Else, you can allow all as shown below:
+                new FileChooser.ExtensionFilter("All Files","*.*")
+        );
+        //Multiple files open: List<File> file
+        List<File> file = chooser.showOpenMultipleDialog(gridPane.getScene().getWindow());
+        //Single Open:File file = chooser.showOpenDialog(gridPane.getScene().getWindow());
+        //File file = chooser.showSaveDialog(gridPane.getScene().getWindow());
+        if(file != null){
+        //Single file open/save System.out.println(file.getPath());
+        //Multiple print out:
+                for(int i=0; i<file.size();i++){
+                    System.out.println(file.get(i));
+                }
+        } else {
+            System.out.println("Chooser was cancelled");
+        }
+
+    }
+
+    @FXML
+    public void handleDirectoryClick(){
+        DirectoryChooser chooser = new DirectoryChooser();
+        File file = chooser.showDialog(gridPane.getScene().getWindow());
+        if(file != null){
+            System.out.println(file.getPath());
+        } else {
+            System.out.println("Chooser was cancelled");
+        }
+    }
