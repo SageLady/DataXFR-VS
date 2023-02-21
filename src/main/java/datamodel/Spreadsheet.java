@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class Spreadsheet {
 
+
     private String shortDescription;
     private String details;
     private LocalDate deadline;

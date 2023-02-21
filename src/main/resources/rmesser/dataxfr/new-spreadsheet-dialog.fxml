@@ -66,7 +66,7 @@
                     <Insets top="10.0" />
                 </HBox.margin>
             </Label>
-            <Button text="Load" minWidth="25"  GridPane.rowIndex="0" GridPane.columnIndex="0"
+            <Button text="Load" minWidth="25"
                     fx:id="loadButton"  onAction="#loadButtonHandleClick" >
                 <graphic>
                     <ImageView>
@@ -83,8 +83,19 @@
                     <Insets top="10.0" />
                 </HBox.margin>
             </Label>
+            <ProgressBar fx:id="progressBar" visible="false" prefWidth="125.0" progress="0.0">
+                <HBox.margin>
+                    <Insets left="2.0" right="10.0" top="10.0" />
+                </HBox.margin>
+            </ProgressBar>
         </HBox>
-
+        <HBox fx:id="HBOX_Owner"  GridPane.rowIndex="5" GridPane.columnIndex="0">
+            <padding>
+                <Insets left="5" top="5" />
+            </padding>
+            <Label fx:id="ownerLabel"  text="Owner:  "  />
+            <ComboBox  fx:id="ownerComboBox" minWidth="250" />
+        </HBox>
 <!--
         <Label text="Short description:" GridPane.rowIndex="0" GridPane.columnIndex="0"   />
         <TextField  fx:id="shortDescriptionField" GridPane.rowIndex="0"   GridPane.columnIndex="1"/>
@@ -93,9 +104,23 @@
                   wrapText="true"/>
         <Label text="Deadline:" GridPane.rowIndex="2" GridPane.columnIndex="0"  />
         <DatePicker  fx:id="deadlinePicker"   GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <HBox GridPane.rowIndex="10"  GridPane.valignment="CENTER" >
+            <children>
+                <ProgressBar fx:id="progressBar" visible="false" prefWidth="200.0" progress="0.0">
+                    <HBox.margin>
+                        <Insets left="50.0" />
+                    </HBox.margin>
+                </ProgressBar>
+            </children>
+        </HBox>
+
+
 -->
 
     </GridPane>
+
 </content>
+
 </DialogPane>
 

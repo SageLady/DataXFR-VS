@@ -1,9 +1,10 @@
 package rmesser.dataxfr;
 
+import datamodel.Owner;
+import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
@@ -25,14 +26,24 @@ public class NewSpreadsheetDialogController {
     private Button loadButton;
     @FXML
     private Label loadInstructions;
+    @FXML
+    ProgressBar progressBar;  //Module 385
+    @FXML
+    private HBox HBOX_Owner;
+    @FXML
+    private Label ownerLabel;
+    @FXML
+    private ComboBox ownerComboBox;
+
     public void initialize(){
         HBOX_Load.setVisible(false);
         loadButton.setVisible(false);
         loadInstructions.setVisible(false);
         path.setEditable(false);
         filename.setEditable(false);
-
-//        buttonFour.setEffect(new DropShadow());
+        HBOX_Owner.setVisible(false);
+        ownerLabel.setVisible(false);
+        ownerComboBox.setVisible(false);
 
 
         path.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -62,53 +73,7 @@ public class NewSpreadsheetDialogController {
         });
 
 
-/*
-        filename.setOnAction(actionEvent -> {
-            String name = filename.getText();
-            if(name.isEmpty()){
-                HBOX_Load.setVisible(false);
-                loadButton.setVisible(false);
-                loadInstructions.setVisible(false);
-            }
-        });
-*/
-
-
     } //END initialize
-
-
-        /*
-
-            filename.textProperty().addListener((observable, oldValue, newValue) -> {
-            String name = observable.getValue();
-            if(name == null ) {
-                HBOX_Load.setVisible(false);
-                loadButton.setVisible(false);
-                loadInstructions.setVisible(false);
-            }
-        });
-
-
-
-
-        formLookup.textProperty().addListener((observable, oldValue, newValue) -> {
-            String copy = observable.getValue();
-            if (newValue.length() > max) {
-                copy = copy.substring(0, max);
-                formLookup.setText(copy);
-            }
-            if (newValue.length() < max) {
-                formSearch.setDisable(true);
-                formSearchResult.setText("");
-            }
-            if (newValue.length() == max) {
-                formSearch.setDisable(false);
-                formSearch.requestFocus(); // Delegate the focus to results label
-            }
-        });
-*/
-
-
 
     @FXML
         public void directoryButtonHandleClick() {
@@ -143,9 +108,38 @@ public class NewSpreadsheetDialogController {
     } //END directoryButtonHandleClick
     @FXML
     public void loadButtonHandleClick() {
+        Task<ObservableList<Owner>> task = new GetAllOwnersTask();
+        ownerComboBox.itemsProperty().bind(task.valueProperty());
+        //Module 385:
+        progressBar.progressProperty().bind(task.progressProperty());
+        progressBar.setVisible(true);
+
+        task.setOnSucceeded(e -> progressBar.setVisible(false));  //IF success make invisible
+        task.setOnFailed(e -> progressBar.setVisible(false));   //IF fail make invisible
+
+        new Thread(task).start();
+
 
     }
 
-
-
 } //END NewSpreadsheetDialogController
+
+
+class GetAllOwnersTask extends Task {
+
+    @Override
+    public ObservableList<Owner> call()  {
+        try {
+            Thread.sleep(4000);
+
+        } catch (InterruptedException e) {
+            System.out.println("Interrupted: " + e.getMessage());
+        }
+
+        return null;
+        //Original:
+        //return FXCollections.observableArrayList
+        //        (DatasourceOwner.getInstance().queryOwners(DatasourceOwner.ORDER_BY_ASC));
+    }
+} //END GetAllOwnersTask
+
