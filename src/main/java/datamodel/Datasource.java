@@ -1,6 +1,10 @@
 package datamodel;
 
 import java.io.File;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 public class Datasource {
 
@@ -137,5 +141,62 @@ public class Datasource {
     public final int ORDER_BY_ASC = 2;
     public final int ORDER_BY_DESC = 3;
 
+    private Connection conn;
 
-}
+    //SINGLETON INSTANCE
+    //Variable that holds the one and only singleton instance --> lazy instantiation
+    private static Datasource instance = new Datasource();
+
+    //CONSTRUCTOR:
+    private Datasource() {   //Constructor
+
+    }
+
+    public static Datasource getInstance() {    //Method that allows other classes access to the db/singleton instance
+        return instance;
+    }
+
+
+/*
+    public static final String TABLE_OWNERS = "owners";
+    public static final String COLUMN_OWNER_ID = "_id";
+    public static final String COLUMN_OWNER_NAME = "name";
+    public static final int INDEX_OWNER_ID = 1;
+    public static final int INDEX_OWNER_NAME = 2;
+
+*/
+
+
+
+    public boolean open() {
+        try {
+            conn = DriverManager.getConnection(CONNECTION_STRING);  //Creates db IF not one created already
+            Statement statement = conn.createStatement();
+
+            //statement.execute("DROP TABLE IF EXISTS " + TABLE_OWNERS);
+
+            statement.execute("CREATE TABLE IF NOT EXISTS " + TABLE_OWNERS +
+                    " (" + COLUMN_OWNER_ID + " integer, " +
+                    COLUMN_OWNER_NAME + " text" + ")");
+
+            return true;
+        } catch(SQLException e) {
+            System.out.println("Couldn't connect to database: " + e.getMessage());
+            return false;
+        }
+    }
+
+    public void close() {
+        try {
+            //CANNOT CLOSE CONNECTION BEFORE queries, order is important
+            if(conn != null) {
+                conn.close();
+            }
+        } catch(SQLException e) {
+            System.out.println("Couldn't close connection: " + e.getMessage());
+        }
+    }
+
+
+
+}  //END Datasource
