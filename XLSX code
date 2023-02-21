@@ -1,0 +1,54 @@
+    public static void main(String[] args)
+    {
+        try
+        {
+            File file = new File("students.xlsx");   //creating a new file instance
+            FileInputStream fis = new FileInputStream(file);   //obtaining bytes from the file
+            //creating Workbook instance that refers to .xlsx file
+            XSSFWorkbook wb = new XSSFWorkbook(fis);
+            XSSFSheet sheet = wb.getSheetAt(0);     //creating a Sheet object to retrieve object
+            Row row  = sheet.getRow(0);
+            int num =   row.getFirstCellNum();
+            Iterator<Row> itr = sheet.iterator();    //iterating over excel file
+            while (itr.hasNext()) {
+                Row r = itr.next();
+                Iterator<Cell> cellIterator = r.cellIterator();   //iterating over each column
+                while (cellIterator.hasNext()) {
+                    Cell cell = cellIterator.next();
+
+                    System.out.println("Get cell type: " + cell.getCellType());
+                    System.out.println("Get cell address: " + cell.getAddress());
+                   // System.out.println("Get cell row: " + cell.getRow());
+                    switch (cell.getCellType()) {
+                        case STRING:
+                                System.out.println("Get string cell value: " + cell.getStringCellValue());
+                                break;
+                        case NUMERIC:
+                                System.out.println("Get cell value: " + cell.getNumericCellValue() );
+                                break;
+                        case _NONE:
+                        case BLANK:
+                            System.out.println("Empty cell");
+                            break;
+                        case ERROR:
+                            System.out.println("Error in cell");
+                            break;
+                        case BOOLEAN:
+                            System.out.println("Boolean cell");
+                            break;
+                        case FORMULA:
+                            System.out.println("Formula in cell");
+                        default:
+                            break;
+                    }  //END switch statement
+
+                } //END while inner
+            } //END while outer
+
+
+        } //END try
+        catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+    }

@@ -4,18 +4,18 @@ import javafx.collections.ObservableList;
 
 import java.time.format.DateTimeFormatter;
 
-public class SpreadsheetData {
-    private static SpreadsheetData instance = new SpreadsheetData();
+public class SpreadsheetRules {
+    private static SpreadsheetRules instance = new SpreadsheetRules();
     private static String filename = "TodoListItems.txt";
     // private List<TodoItem> todoItems;
     private ObservableList<Spreadsheet> todoItems;
     private DateTimeFormatter formatter;
 
-    public static SpreadsheetData getInstance() {
+    public static SpreadsheetRules getInstance() {
         return instance;
     }
 
-    private SpreadsheetData() {
+    private SpreadsheetRules() {
         formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
     }
 

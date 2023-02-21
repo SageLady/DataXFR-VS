@@ -16,6 +16,17 @@ import java.util.Optional;
 public class MainMenuController {
     @FXML
     private BorderPane mainBorderPane;
+    public static final String DB_NAME = "testjava.db";
+    public static final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\19255\\IdeaProjects\\Mod356CreatingDatabases\\" + DB_NAME;
+
+    public static final String TABLE_CONTACTS = "contacts";
+
+    public static final String COLUMN_NAME = "name";
+    public static final String COLUMN_PHONE = "phone";
+    public static final String COLUMN_EMAIL = "email";
+
+
+
 
 
     @FXML

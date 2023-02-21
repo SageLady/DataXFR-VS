@@ -1,6 +1,7 @@
 package rmesser.dataxfr;
 
 import datamodel.Owner;
+import datamodel.XLSXReader;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -10,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 
 import java.io.File;
+import java.util.logging.LogManager;
+import java.util.logging.Logger;
 
 public class NewSpreadsheetDialogController {
     @FXML
@@ -36,6 +39,11 @@ public class NewSpreadsheetDialogController {
     private ComboBox ownerComboBox;
 
     public void initialize(){
+
+        System.setProperty("log4j.configurationFile","./path_to_the_log4j2_config_file/log4j2.xml");
+
+        Logger log = LogManager.getLogManager().getLogger("logFile");
+
         HBOX_Load.setVisible(false);
         loadButton.setVisible(false);
         loadInstructions.setVisible(false);
@@ -106,10 +114,16 @@ public class NewSpreadsheetDialogController {
                 System.out.println("Chooser was cancelled");
             }
     } //END directoryButtonHandleClick
+
     @FXML
     public void loadButtonHandleClick() {
+        //Check metadata of spreadsheet:
+        XLSXReader reader = new XLSXReader(path.getText());
+        reader.getXLSXMeta();
+
         Task<ObservableList<Owner>> task = new GetAllOwnersTask();
         ownerComboBox.itemsProperty().bind(task.valueProperty());
+
         //Module 385:
         progressBar.progressProperty().bind(task.progressProperty());
         progressBar.setVisible(true);
@@ -126,16 +140,14 @@ public class NewSpreadsheetDialogController {
 
 
 class GetAllOwnersTask extends Task {
-
     @Override
     public ObservableList<Owner> call()  {
         try {
             Thread.sleep(4000);
 
         } catch (InterruptedException e) {
-            System.out.println("Interrupted: " + e.getMessage());
+            System.out.println("Observable Interrupted: " + e.getMessage());
         }
-
         return null;
         //Original:
         //return FXCollections.observableArrayList
