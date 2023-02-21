@@ -27,16 +27,14 @@ public class Datasource {
             "jdbc:sqlite:C:" + SEPARATOR + "Users" + SEPARATOR  + "19255" + SEPARATOR  +
                     "IdeaProjects" + SEPARATOR  + "DataXFR-VS" + SEPARATOR  + DB_NAME;
 
-
-
-    //OWNERS TABLE VARS:
+    //*************** OWNERS TABLE VARS:
     public static final String TABLE_OWNERS = "owners";
     public static final String COLUMN_OWNER_ID = "_id";
     public static final String COLUMN_OWNER_NAME = "name";
     public static final int INDEX_OWNER_ID = 1;
     public static final int INDEX_OWNER_NAME = 2;
 
-    //WORKBOOK TABLE VARS:
+    //*************** WORKBOOK TABLE VARS:
     public static final String TABLE_WORKBOOKS = "workbooks";
     public static final String COLUMN_WORKBOOK_ID = "_id";
     public static final String COLUMN_WORKBOOK_NAME = "name";
@@ -53,7 +51,7 @@ public class Datasource {
     public static final int INDEX_WORKBOOK_OWNER = 6;
     public static final int INDEX_WORKBOOK_OWNER_ID = 7;
 
-    //SPREADSHEET:
+    //*************** SPREADSHEET TABLE VARS:
     public static final String TABLE_SHEETS = "sheets";
     public static final String COLUMN_SHEET_ID = "_id";
     public static final String COLUMN_SHEET_NAME = "name";
@@ -78,11 +76,10 @@ public class Datasource {
     public static final int INDEX_SHEET_WORKBOOK_OWNER = 10;
     public static final int INDEX_SHEET_WORKBOOK_OWNER_ID = 11;
 
-
-    //SPREADSHEET RULES:
+    //*************** SPREADSHEET RULES TABLE VARS:
     public static final String TABLE_RULES = "rules";
     public static final String COLUMN_RULE_ID = "_id";
-    public static final String COLUMN_RULE_NAME = "name";
+    public static final String COLUMN_RULE_NAME = "name";   //I will auto-create rule name--> _id + rule + sourceWBId + "swb" + destWBId + "dwb"
     public static final String COLUMN_RULE_SOURCE_WORKBOOK_ID = "sourceWBId";   //workbooks table
     public static final String COLUMN_RULE_SOURCE_WORKBOOK_NAME = "sourceWBName";   //workbooks table
     public static final String COLUMN_RULE_SOURCE_WORKBOOK_DIR = "sourceWBDir";  //workbooks table
@@ -111,9 +108,31 @@ public class Datasource {
     public static final int INDEX_RULE_DEST_SHEET_PROJECT_NAME = 13;    //Destination: Project Name --> sheets table
     public static final int INDEX_RULE_DEST_SHEET_PROJECT_NUMBER = 14;   //Destination: Project Number --> sheets table
 
+    //*************** SUCCESS TABLE VARS:
+    public static final String TABLE_SUCCESS = "success";
+    public static final String COLUMN_SUCCESS_ID = "_id";
+    public static final String COLUMN_SUCCESS_DATE = "date";
+    public static final String COLUMN_SUCCESS_RULE_ID = "ruleId";   //rule table
+    public static final String COLUMN_SUCCESS_RULE_NAME = "ruleName";   //rule name
 
+    public static final int INDEX_SUCCESS_ID = 1;
+    public static final int INDEX_SUCCESS_DATE = 2;
+    public static final int INDEX_SUCCESS_RULE_ID = 3;   //rule table --> _id
+    public static final int INDEX_SUCCESS_RULE_NAME = 4;   //rule table -->rule name
 
+    //*************** FAIL TABLE VARS:
+    public static final String TABLE_FAIL = "fail";
+    public static final String COLUMN_FAIL_ID = "_id";
+    public static final String COLUMN_FAIL_DATE = "date";
+    public static final String COLUMN_FAIL_RULE_ID = "ruleId";   //rule table
+    public static final String COLUMN_FAIL_RULE_NAME = "ruleName";   //rule name
 
+    public static final int INDEX_FAIL_ID = 1;
+    public static final int INDEX_FAIL_DATE = 2;
+    public static final int INDEX_FAIL_RULE_ID = 3;   //rule table --> _id
+    public static final int INDEX_FAIL_RULE_NAME = 4;   //rule table -->rule name
+
+    //*************** ORDERING VARS:
     public final int ORDER_BY_NONE = 1;
     public final int ORDER_BY_ASC = 2;
     public final int ORDER_BY_DESC = 3;
