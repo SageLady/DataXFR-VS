@@ -157,23 +157,12 @@ public class Datasource {
     }
 
 
-/*
-    public static final String TABLE_OWNERS = "owners";
-    public static final String COLUMN_OWNER_ID = "_id";
-    public static final String COLUMN_OWNER_NAME = "name";
-    public static final int INDEX_OWNER_ID = 1;
-    public static final int INDEX_OWNER_NAME = 2;
-
-*/
-
-
-
     public boolean open() {
         try {
             conn = DriverManager.getConnection(CONNECTION_STRING);  //Creates db IF not one created already
             Statement statement = conn.createStatement();
 
-            //statement.execute("DROP TABLE IF EXISTS " + TABLE_OWNERS);
+            //statement.execute("DROP TABLE IF EXISTS " + TABLE_OWNERS);  //DELETES TABLE
 
             statement.execute("CREATE TABLE IF NOT EXISTS " + TABLE_OWNERS +
                     " (" + COLUMN_OWNER_ID + " integer, " +

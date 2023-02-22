@@ -13,7 +13,9 @@
         <MenuBar>
             <Menu text="File">
                 <items>
-                    <MenuItem text="New Spreadsheet" onAction="#showNewSheetDialog"/>
+                    <MenuItem text="Add Owner" onAction="#showNewOwnerDialog"/>
+                    <SeparatorMenuItem/>
+                    <MenuItem text="Add Workbook" onAction="#showNewWorkbookDialog"/>
                     <SeparatorMenuItem/>
                     <MenuItem text="Exit" onAction="#handleExit"/>
                 </items>
@@ -21,9 +23,19 @@
         </MenuBar>
         <ToolBar>
             <HBox>
-                <Button onAction="#showNewSheetDialog" >
+                <Button onAction="#showNewOwnerDialog" >
                     <tooltip>
-                        <Tooltip text="Add a new spreadsheet" />
+                        <Tooltip text="Add a new owner" />
+                    </tooltip>
+                    <graphic>
+                        <ImageView>
+                            <Image url="@Images/AddOwner.png"/>
+                        </ImageView>
+                    </graphic>
+                </Button>
+                <Button onAction="#showNewWorkbookDialog" >
+                    <tooltip>
+                        <Tooltip text="Add a new workbook" />
                     </tooltip>
                     <graphic>
                         <ImageView>

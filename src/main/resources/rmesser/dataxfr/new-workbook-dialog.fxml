@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="rmesser.dataxfr.NewSpreadsheetDialogController"
+            fx:controller="rmesser.dataxfr.NewWorkbookDialogController"
             stylesheets="@CSS/styles.css"
             prefHeight="600.0" prefWidth="600.0">
 <!--<headerText>

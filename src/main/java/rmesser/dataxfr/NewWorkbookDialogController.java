@@ -14,7 +14,7 @@ import java.io.File;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class NewSpreadsheetDialogController {
+public class NewWorkbookDialogController {
     @FXML
     private GridPane gridPane;
 
@@ -136,7 +136,7 @@ public class NewSpreadsheetDialogController {
 
     }
 
-} //END NewSpreadsheetDialogController
+} //END NewWorkbookDialogController
 
 
 class GetAllOwnersTask extends Task {
