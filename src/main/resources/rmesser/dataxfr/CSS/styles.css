@@ -1,10 +1,16 @@
-.button {
-    -fx-background-color: blue;
-    -fx-border-color: black;
-    -fx-text-fill: white;
-/*
-    -fx-graphic: url(@csswithfx/javafxapplication/csswithfx/CSS/CSS-Images/AlignRight24.gif);
-*/
+#MessageLabel {
+  -fx-text-fill: red;
+  -fx-font-weight: bold;
+}
+
+#successMessage {
+   -fx-text-fill: blue;
+   -fx-font-weight: bold;
+}
+
+#dataEntry {
+  -fx-font-weight: bold;
+  -fx-font-size: 12;
 }
 
 #HBOX_Border {
@@ -23,3 +29,17 @@
     -fx-background-color: yellow;
     -fx-text-fill: black;
 }
+
+
+/*
+.button {
+    -fx-background-color: blue;
+    -fx-border-color: black;
+    -fx-text-fill: white;
+
+    -fx-graphic: url(@csswithfx/javafxapplication/csswithfx/CSS/CSS-Images/AlignRight24.gif);
+}
+
+
+
+*/

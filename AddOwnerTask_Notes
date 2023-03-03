@@ -1,0 +1,47 @@
+package datamodel;
+
+import javafx.application.Platform;
+import javafx.concurrent.Task;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+
+import java.sql.SQLException;
+
+public class AddOwnerTask extends Task<Owner> {
+    private final Owner owner;
+    private Label message;
+    private Label success;
+    private ProgressBar progress;
+
+    public AddOwnerTask(Owner owner, ProgressBar progressBar, Label messageLabel, Label successLabel) {
+        this.owner = owner;
+        this.message = messageLabel;
+        this.progress = progressBar;
+        this.success = successLabel;
+        progress.setVisible(true);
+    }
+    @Override protected Owner call() throws Exception {
+        // pseudocode:
+        // query the database for owner ID:
+        //Query owners:  make sure doesn't already exist
+
+
+        // read the values
+
+        // Now update the owner
+        Platform.runLater(new Runnable() {
+            @Override public void run() {
+                System.out.println("Inside run()");
+                try {
+                    owner.setId(Datasource.getInstance().insertOwner(owner.getName()));
+                } catch (SQLException e) {
+                    System.err.println("AddOwnerTask--> run --> " + e.getMessage());
+                }
+                // etc
+            }
+        });
+        success.setVisible(true);
+        return owner;
+    }
+}
+

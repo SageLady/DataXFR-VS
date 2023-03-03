@@ -25,7 +25,7 @@
             <HBox>
                 <Button onAction="#showNewOwnerDialog" >
                     <tooltip>
-                        <Tooltip text="Add a new owner" />
+                        <Tooltip text="Add, edit or delete owner" />
                     </tooltip>
                     <graphic>
                         <ImageView>

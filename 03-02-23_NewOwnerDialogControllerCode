@@ -87,6 +87,9 @@ public class NewOwnerDialogController {
             messageLabel.setText("Owner name already exists");
             return;
         }
+
+       // progressBar.setVisible(true);
+      //New START
         messageLabel.setText("");
         AddOwnerTask task = new AddOwnerTask(ownerName.getText()){
             @Override
@@ -96,13 +99,30 @@ public class NewOwnerDialogController {
             }
         };
 
+       // progressBar.progressProperty().bind(task.progressProperty());
+       // task.setOnSucceeded(e -> progressBar.setVisible(false));  //IF success make invisible
+       // task.setOnFailed(e -> progressBar.setVisible(false));   //IF fail make invisible
         task.setOnSucceeded(e -> successLabel.setVisible(true));
         new Thread(task).start();
 
     }  //AddOwnerHandleClick
 
-} //END NewOwnerDialogController
+    //ORIG - START
+//      messageLabel.setVisible(false);
+//      messageLabel.setText("");
+//      Owner owner = new Owner();
+//        try {
+//            owner.setId(Datasource.getInstance().insertOwner(ownerName.getText()));
+//            owner.setName(ownerName.getText());
+//        } catch (SQLException e) {
+//            System.err.println("NewOwnereDialogController --> addOwnerButtonHandleClick --> " + e.getMessage());
+//            return;
+//        }
 
+//ORIG END
+
+
+} //END NewOwnerDialogController
 
 class GetAllOwnersTask extends Task {
     @Override

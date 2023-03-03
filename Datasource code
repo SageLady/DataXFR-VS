@@ -1,0 +1,33 @@
+/*
+        Task<ObservableList<Owner>> task = new GetAllOwnersTask();
+
+        ownerTable.itemsProperty().bind(task.valueProperty());
+        //Module 385:
+
+        progressBar.progressProperty().bind(task.progressProperty());
+        progressBar.setVisible(true);
+
+        task.setOnSucceeded(e -> progressBar.setVisible(false));  //IF success make invisible
+        task.setOnFailed(e -> progressBar.setVisible(false));   //IF fail make invisible
+
+        new Thread(task).start();
+*/
+
+/*
+        final int totalIterations = 9000000;
+        Task<Integer> task = new Task<Integer>() {
+            @Override protected Integer call() throws Exception {
+                int iterations;
+                for (iterations = 0; iterations < totalIterations; iterations++) {
+                    if (isCancelled()) {
+                        updateMessage("Cancelled");
+                        break;
+                    }
+                    updateMessage("Iteration " + iterations);
+                    updateProgress(iterations, totalIterations);
+                }
+                return iterations;
+            }
+        };
+
+*/

@@ -30,8 +30,6 @@ public class Owner {
         this.name.set(name);
     }
 
-
-
-}
+}  //END owner class
 
 

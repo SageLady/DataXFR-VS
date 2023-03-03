@@ -1,9 +1,6 @@
 package rmesser.dataxfr;
 
-import datamodel.Owner;
 import datamodel.XLSXReader;
-import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -121,7 +118,7 @@ public class NewWorkbookDialogController {
         XLSXReader reader = new XLSXReader(path.getText());
         reader.getXLSXMeta();
 
-        Task<ObservableList<Owner>> task = new GetAllOwnersTask();
+     /*  // Task<ObservableList<Owner>> task = new getAllOwnersTask();
         ownerComboBox.itemsProperty().bind(task.valueProperty());
 
         //Module 385:
@@ -133,12 +130,13 @@ public class NewWorkbookDialogController {
 
         new Thread(task).start();
 
-
+*/
     }
 
 } //END NewWorkbookDialogController
 
 
+/*
 class GetAllOwnersTask extends Task {
     @Override
     public ObservableList<Owner> call()  {
@@ -155,3 +153,4 @@ class GetAllOwnersTask extends Task {
     }
 } //END GetAllOwnersTask
 
+*/

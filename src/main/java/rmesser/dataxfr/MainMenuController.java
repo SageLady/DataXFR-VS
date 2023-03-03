@@ -8,12 +8,15 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.layout.BorderPane;
 
+import java.io.File;
 import java.io.IOError;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Optional;
 
 public class MainMenuController {
+
+    public static final String SEPARATOR =  File.separator;
     @FXML
     private BorderPane mainBorderPane;
     public static final String DB_NAME = "testjava.db";
@@ -64,10 +67,10 @@ public class MainMenuController {
         String title = null;
         Dialog<ButtonType> dialog = new Dialog();
         dialog.initOwner(this.mainBorderPane.getScene().getWindow());
-        dialog.setTitle("Add New Owner");
-        dialog.setHeaderText("Steps: 1. Add owner if not present in owner's list.");
+        dialog.setTitle("Add New, Edit, Delete Owner");
+        dialog.setHeaderText("Options: 1. Add owner 2. Edit owner 3. Delete owner");
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(this.getClass().getResource("new-owner-dialog.fxml"));
+        fxmlLoader.setLocation(this.getClass().getResource("/rmesser/dataxfr/new-owner-dialog.fxml"));
 
         try {
             dialog.getDialogPane().setContent((Node)fxmlLoader.load());
@@ -79,13 +82,24 @@ public class MainMenuController {
             System.out.println(mainMessage);
             System.out.println(title);
             return;
+        } catch (RuntimeException e) {
+            System.out.println("MainMenuController-->showNewOwnerDialog --> Runtime Exception " + e.getMessage());
+            return;
         }
 
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         Optional<ButtonType> result = dialog.showAndWait();
+        NewOwnerDialogController controller = (NewOwnerDialogController) fxmlLoader.getController();
         if (result.isPresent() && result.get() == ButtonType.OK) {
-            NewOwnerDialogController controller = (NewOwnerDialogController) fxmlLoader.getController();
+           // System.out.println("inside close");
+          //Can grab vars here using controller.
+        }
+
+        try {
+            controller.close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
 
     }  //END showNewOwnerDialog
